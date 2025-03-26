@@ -1,0 +1,8 @@
+Ecommerce Server Project
+
+Product
+User Management
+Cart
+Payments
+Orders
+Reviews
