@@ -1,6 +1,9 @@
 Ecommerce Server Project
 
-Product
+Product -- Create Product 
+           Fetch Product
+           Update Product
+           Delete Product
 User Management
 Cart
 Payments
