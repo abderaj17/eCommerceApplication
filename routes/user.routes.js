@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../model/user.model');
 const {getUsers} = require('../controller/user.controller');
+const {auth, createToken} = require('../auth/middleware.auth');
 
 router.get('/getUserDetails/:id', getUsers);
 
@@ -53,7 +54,7 @@ router.put('/:id', async(req, res)=>{
         }
 })
 
-router.delete('/delete/:id', async(req, res)=>{
+router.delete('/delete/:id',authentication, async(req, res)=>{
     try{
         const id = req.params.id;
         const user = await User.findByIdAndDelete(id);
@@ -74,3 +75,4 @@ router.get('/logout', async(req, res)=>{
 })
 
 module.exports = router;
+

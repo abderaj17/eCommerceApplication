@@ -2,8 +2,8 @@ const express = require('express');
 const { db } = require('./model/user.modal');
 const app = express();
 const mongoose = require('mongoose');
-
 require('dotenv').config();
+const userRoutes = require('./routes/user.routes');
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
