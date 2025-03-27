@@ -64,3 +64,13 @@ router.delete('/delete/:id', async(req, res)=>{
     }
 })
 
+router.get('/logout', async(req, res)=>{
+    try{
+        res.clearCookie('token');
+        res.status(200).json({message: 'Logout successful'});
+    }catch(err){
+        res.status(500).json({message: 'Internal server error', error: err.message})
+    }
+})
+
+module.exports = router;
