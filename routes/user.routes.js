@@ -5,6 +5,13 @@ const {auth, createToken} = require('../auth/middleware.auth');
 
 router.get('/getUserDetails/:id', getUsers);
 
+
+router.get('users', async(req, res)=>{
+    try{
+        const users = await
+    }
+})
+
 router.post('/login', async (req, res)=>{
     try{
         const {email, password} = req.body;
@@ -54,7 +61,7 @@ router.put('/:id', async(req, res)=>{
         }
 })
 
-router.delete('/delete/:id',authentication, async(req, res)=>{
+router.delete('/delete/:id',auth, async(req, res)=>{
     try{
         const id = req.params.id;
         const user = await User.findByIdAndDelete(id);
