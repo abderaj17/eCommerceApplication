@@ -37,3 +37,18 @@ router.post('/register', async (req, res)=>{
         res.status(500).json({message: "Server error", error: error.message});
     }
 })
+
+router.put('/:id', async(req, res)=>{
+    try{
+        const updateuser = req.body;
+        const user = await User.findByIdAndUpdate(req.params.id,{
+            $set: updateuser
+        },{new:true});
+        //new:true will return the updated user
+
+        res.status(200).json(user);
+        }
+        catch(err){
+            res.status(400).json(err);
+        }
+})
