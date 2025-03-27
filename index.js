@@ -13,6 +13,9 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use(express.json());
 
+app.use('/user', userRoutes);
+
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
