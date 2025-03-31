@@ -6,9 +6,13 @@ const {auth, createToken} = require('../auth/middleware.auth');
 router.get('/getUserDetails/:id', getUsers);
 
 
-router.get('users', async(req, res)=>{
+router.get('/users', async(req, res) =>{
     try{
-        const users = await
+        const users = await User.find();
+        res.status(200).json(users);
+    }
+    catch(err){
+        res.status(400).json(err);
     }
 })
 
@@ -29,7 +33,9 @@ router.post('/login', async (req, res)=>{
             return res.status(400).json({message: 'Invalid credentials'});
         }
 
-        res.status(200).json({mesaage: 'Login Successful', user});
+        res.status(200).json({mesaage: 'Login Successful', user, token:token});
+
+
     }catch(error){
         res.status(500).json({message: 'Internal Server Error'});
     }
@@ -46,11 +52,13 @@ router.post('/register', async (req, res)=>{
     }
 })
 
+
+//update user
 router.put('/:id', async(req, res)=>{
     try{
         const updateuser = req.body;
         const user = await User.findByIdAndUpdate(req.params.id,{
-            $set: updateuser
+            $set: updateduser
         },{new:true});
         //new:true will return the updated user
 
@@ -61,6 +69,8 @@ router.put('/:id', async(req, res)=>{
         }
 })
 
+
+//delete user
 router.delete('/delete/:id',auth, async(req, res)=>{
     try{
         const id = req.params.id;
@@ -72,6 +82,8 @@ router.delete('/delete/:id',auth, async(req, res)=>{
     }
 })
 
+
+//logout user
 router.get('/logout', async(req, res)=>{
     try{
         res.clearCookie('token');

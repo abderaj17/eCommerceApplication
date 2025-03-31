@@ -19,8 +19,3 @@ const auth  = async (req, res, next) =>{
     }
 }
 
-const createToken = async (user) =>{
-    try{
-        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '1d'});
-    }
-}
