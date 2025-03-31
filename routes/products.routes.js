@@ -61,3 +61,25 @@ router.delete('/deleteProduct/:id', async (req, res)=>{
         res.status(400).json(err);
     }
 });
+
+//get products by category
+router.get('/category/:category', async (req, res)=>{
+    try{
+        const category = req.params.category;
+
+        const products = await Product.find({category: category});
+
+        if(!products){
+            return res.status(404).json({message: 'Products not found'});
+        }
+
+        res.status(200).json({products:products});
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).json({message: 'Internal Server Error'});
+    }
+})
+
+
+//get products by seller id
