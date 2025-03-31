@@ -27,6 +27,21 @@ const productSchema = new mongoose.Schema({
         ref: 'User',
         required: false,
     },
-
+    category:{
+        type:String,
+        required: [true, 'Please enter product category'],
+        trim: true,
+    },
+    stock:{
+      type: Number,
+      required: [true, 'Please enter product stock'],
+        trim: true,
+    }, 
+},{
+    timestamps: true,
+    versionKey: false,
 })
 
+const Product = mongoose.model('Product', productSchema);
+
+module.exports = Product;
