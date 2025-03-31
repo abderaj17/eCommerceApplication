@@ -19,3 +19,15 @@ const auth  = async (req, res, next) =>{
     }
 }
 
+const createToken = async (user) =>{
+    try{
+        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: "1hr"});
+
+        return token;
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+module.exports = {auth, createToken};
