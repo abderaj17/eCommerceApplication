@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../model/user.model');
+const User = require('../model/user.modal');
 const {getUsers} = require('../controller/user.controller');
 const {auth, createToken} = require('../auth/middleware.auth');
 
