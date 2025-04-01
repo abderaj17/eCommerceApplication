@@ -19,7 +19,6 @@ router.get('/products', async(req, res) =>{
 
 
 //add new Products
-
 router.post('/createProduct', async (req, res)=>{
     try{
         const product = req.body;
@@ -47,6 +46,24 @@ router.get('/:id', async (req, res)=>{
         res.status(500).json({message: 'Internal Server Error'});
     }
 })
+
+
+//update product by id 
+router.put('/updateProduct/:id', async (req, res) =>{
+    try{
+        const product = Product.findById({_id: req.params.id});
+        if(!product){
+            return res.status(404).json({message: 'Product not found'});
+        }
+        const updateProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {new:true});
+        res.status(200).json({message: 'Product updated successfully', product:updateProduct});
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).json({message: 'Internal Server Error'});
+    }
+});
+
 
 
 //delete product by id
