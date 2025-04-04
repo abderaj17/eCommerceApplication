@@ -18,3 +18,17 @@ exports const getCart = async () => {
     setAuthToken(token);
     return await axios.get(API_URL);
 }
+
+//remove item form cart
+exports const removeFromCart = async (itemId) => {
+    const token = localStorage.getItem('token');
+    setAuthToken(token);
+    return await axios.delete(`${API_URL/items/${itemId}}`);
+}
+
+//Clear cart
+exports const clearCart = async () => {
+    const token = localStorage.getItem('token');
+    setAuthToken(token);
+    return await axios.delete(API_URL);
+}
