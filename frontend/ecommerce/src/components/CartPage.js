@@ -1,5 +1,5 @@
 import React from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../contexts/CartContext";
 import {
   Button,
   Typography,
