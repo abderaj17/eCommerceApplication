@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import {
   Button,
@@ -12,7 +12,7 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const CartPage = () => {
-  const { cart, loading, addItem, removeItem, emptyCart } =
+  const { cart, loading, removeItem, emptyCart } =
     useContext(CartContext);
 
   if (loading) return <Typography>Loading Cart ...</Typography>;
@@ -32,7 +32,7 @@ const CartPage = () => {
           <ListItem key={item._id}>
             <ListItemText
               primary={item.product.name}
-              secondary={`$${item.product.price} * ${item.quantity}`}
+              secondary={`$${item.product.price} × ${item.quantity}`}
             />
             <IconButton onClick={() => removeItem(item._id)}>
               <DeleteIcon />
